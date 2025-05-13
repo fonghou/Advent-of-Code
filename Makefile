@@ -13,10 +13,11 @@ exe:
 env:
 	rm .ghc.environment.*$(GHC)* || true
 	cabal install -w ghc-$(GHC) --allow-newer --package-env . --lib \
-		base relude bluefin conduit foldl io-classes \
+		base relude bytestring text containers unordered-containers \
+		bluefin conduit foldl io-classes io-sim stm stm-containers \
 		aeson optics aeson-optics optparse-generic pretty-show \
-		template-haskell ihp-hsx lucid2 rapid twain wai wai-extra warp \
-		auto-split breakpoint tasty tasty-hunit tasty-wai io-sim
+		template-haskell lucid2 rapid twain wai wai-extra warp \
+		auto-split breakpoint tasty tasty-hunit tasty-wai
 
 hie:
 	hiedb-$(GHC) -D .hiedb index .hiefiles --src-base-dir .
